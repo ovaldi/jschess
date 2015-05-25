@@ -1,67 +1,73 @@
-﻿define(["Klass","ChessPiece"],function(klass,piece){
-	var cannon=klass.define("Cannon",{
-		extend:piece,
-		init:function(cfg){
-			var self=this;
-			self.callParent(cfg);
-			self.code=13;
+﻿define(["./Piece"], function(Piece){
+	"use strict";
+
+	var codeMap = {
+			0:13,
+			1:21
 		},
-		delta:[-1,1,-16,16],
+		delta = [-1,1,-16,16];
+
+	var Cannon = Piece.extend({
+		init:function(cfg){
+			Piece.prototype.init.apply(this, arguments);
+			this.code = codeMap[this.player];
+		},
 		legalMove:function(dst){//假定dst一定在棋盘内
-			var nDelta,pin,pcDst=this.board.boardMap[dst];
+			var board = this.board, cell = this.cell, pcDst = board.boardMap[dst], nDelta, pin;
 			if(this.isSide(pcDst)){
 				return false;
 			}
 			if(this.sameRow(dst)){
-				nDelta=this.cell<dst?-1:1;
+				nDelta = cell < dst ? -1 : 1;
 			}else if(this.sameCol(dst)){
-				nDelta=this.cell<dst?-16:16;
+				nDelta = cell < dst ? -16 : 16;
 			}
 			else{
 				return false;
 			}
-			pin=this.cell+nDelta;
-			while(pin!=dst&&this.board.boardMap[pin]==0){
-				pin+=nDelta;
+			pin = this.cell + nDelta;
+			while(pin != dst && board.boardMap[pin] == 0){
+				pin += nDelta;
 			}
-			if(pin!=dst&&pcDst!=0){
-				while(pin!=dst&&this.board.boardMap[pin]==0){
-					pin+=nDelta;
+			if(pin != dst && pcDst != 0){
+				while(pin != dst && board.boardMap[pin] == 0){
+					pin += nDelta;
 				}
 			}
-			return pin==dst;
+			return pin == dst;
 		},
 		generateMoves:function(){
-			var mvs=[],dst=null,pcDst,nDelta,oppSideCode=this.oppSideCode();
+			var board = this.board, cell = this.cell, mvs=[], dst=null, pcDst, nDelta, oppSideCode = this.oppSideCode();
 			for(var i=0;i<4;i++){
-				nDelta=this.delta[i];
-				dst=this.cell+nDelta;
-				while(this.board.inBoard(dst)){
-					pcDst=this.board.boardMap[dst];
+				nDelta = delta[i];
+				dst = cell + nDelta;
+				while(board.inBoard(dst)){
+					pcDst = board.boardMap[dst];
 					if(pcDst==0){
-						mvs.push([this.cell,dst]);
+						mvs.push([cell, dst]);
 					}
 					else{
 						break;
 					}
-					dst+=nDelta;
+					dst += nDelta;
 				}
-				dst+=nDelta;
-				while(this.board.inBoard(dst)){
-					pcDst=this.board.boardMap[dst];
-					if(pcDst!=0){
-						if(oppSideCode&pcDst==0){
-							mvs.push([this.cell,dst]);
+				dst += nDelta;
+				while(board.inBoard(dst)){
+					pcDst = board.boardMap[dst];
+					if(pcDst != 0){
+						if(oppSideCode & pcDst == 0){
+							mvs.push([cell, dst]);
 						}
 						break;
 					}
-					dst+=nDelta;
+					dst += nDelta;
 				}
 			}
 			return mvs;
 		}
 	});
-	cannon.valuePos=[
+
+	Cannon.valuePos=[
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -79,5 +85,6 @@
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	];
-	return cannon;
+	
+	return Cannon;
 });
