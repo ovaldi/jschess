@@ -2,10 +2,10 @@
 	"use strict";
 
 	var codeMap = {
-			0:13,
-			1:21
-		},
-		delta = [-1,1,-16,16];
+		0:13,
+		1:21
+	},
+	delta = [-1,1,-16,16];
 
 	var Cannon = Piece.extend({
 		init:function(cfg){
@@ -64,6 +64,9 @@
 				}
 			}
 			return mvs;
+		},
+		getValue: function(){
+			return Cannon.valuePos[this.cell];
 		}
 	});
 
@@ -85,6 +88,6 @@
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	];
-	
+
 	return Cannon;
 });
