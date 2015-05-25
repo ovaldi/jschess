@@ -1,2 +1,2 @@
 # jschess
-Chinese chess of the JavaScript implementation
+JavaScript implementation of Chinese chess
