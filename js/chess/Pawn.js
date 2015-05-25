@@ -1,6 +1,7 @@
 ﻿define([
-	"./Piece"
-],function(Piece){
+	"./Piece",
+	"./mv"
+],function(Piece, mv){
 	"use strict";
 	
 	var codeMap = {
@@ -12,7 +13,6 @@
 		init:function(){
 			Piece.prototype.init.apply(this,arguments);
 			this.code = codeMap[this.player];
-			return this;
 		},
 		//向前走一步
 		forward:function(){
@@ -21,28 +21,28 @@
 			return this.cell - 16 + (this.player << 5);
 		},
 		//判断走法是否有效
-		isValidMove:function(dst){
-			var board= this.board, cell =this.cell;
+		isValidDst:function(dst){
+			var board= this.board, cell = this.cell;
 			return !this.isSide(board.boardMap[dst]) && 
-				((this.isAwayHalf() && Math.abs(this.cell-dst)==1) || dst == this.forward());
+				((this.isAwayHalf() && Math.abs(this.cell - dst)==1) || dst == this.forward());
 		},
-		generateMoves:function(){
-			var board = this.board, boardMap = board.boardMap, moves=[],dst=null;
+		genMoves:function(){
+			var board = this.board, boardMap = board.boardMap, mvs=[],dst=null;
 			dst = this.forward();
 			if(board.inBoard(dst) && !this.isSide(boardMap[dst])){
-				moves.push([cell,dst]);
+				mvs.push(mv.gen(cell, dst));
 			}
 			if(this.isAwayHalf()){
 				dst = cell - 1;
 				if(board.inBoard(dst)&&!this.isSide(boardMap[dst])){
-					moves.push([cell,dst]);
+					mvs.push(mv.gen(cell, dst));
 				}
 				dst = cell + 1;
 				if(board.inBoard(dst)&&!this.isSide(boardMap[dst])){
-					moves.push([cell,dst]);
+					mvs.push(mv.gen(cell, dst));
 				}
 			}
-			return moves;
+			return mvs.push(mv.gen(cell, dst));;
 		},
 		getValue:function(){
 			return Pawn.valuePos[this.cell];

@@ -1,4 +1,7 @@
-﻿define(["./Piece"],function(Piece){
+﻿define([
+	"./Piece",
+	"./mv"
+],function(Piece, mv){
 	"use strict";
 	
 	var codeMap = {
@@ -21,26 +24,26 @@
 			if(this.sameRow(dst)){
 				nDelta=cell<dst?-1:1;
 			}else if(this.sameCol(dst)){
-				nDelta=cell<dst?-16:16;
+				nDelta=cell < dst?-16:16;
 			}
 			else{
 				return false;
 			}
-			pin=cell+nDelta;
-			while(pin!=dst&&boardMap[pin]==0){
-				pin+=nDelta;
+			pin = cell + nDelta;
+			while(pin != dst && boardMap[pin]==0){
+				pin += nDelta;
 			}
 			return pin == dst;
 		},
 		generateMoves:function(){
 			var board = this.board, cell  = this.cell, oppSideCode = this.oppSideCode(), mvs=[], dst=null, pcDst, nDelta;
 			for(var i=0;i<4;i++){
-				nDelta=delta[i];
-				dst=cell+nDelta;
+				nDelta = delta[i];
+				dst = cell + nDelta;
 				while(board.inBoard(dst)){
 					pcDst = board.boardMap[dst];
 					if(oppSideCode&pcDst == 0){
-						mvs.push([cell,dst]);
+						mvs.push(mv.genMove(cell, dst));
 					}
 					if(pcDst != 0){
 						break;

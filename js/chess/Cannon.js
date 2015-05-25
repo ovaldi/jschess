@@ -1,4 +1,4 @@
-﻿define(["./Piece"], function(Piece){
+﻿define(["./Piece", "./mv"], function(Piece, mv){
 	"use strict";
 
 	var codeMap = {
@@ -12,7 +12,7 @@
 			Piece.prototype.init.apply(this, arguments);
 			this.code = codeMap[this.player];
 		},
-		legalMove:function(dst){//假定dst一定在棋盘内
+		isValidDst:function(dst){//假定dst一定在棋盘内
 			var board = this.board, cell = this.cell, pcDst = board.boardMap[dst], nDelta, pin;
 			if(this.isSide(pcDst)){
 				return false;
@@ -56,7 +56,7 @@
 					pcDst = board.boardMap[dst];
 					if(pcDst != 0){
 						if(oppSideCode & pcDst == 0){
-							mvs.push([cell, dst]);
+							mvs.push(mv.genMove(cell, dst));
 						}
 						break;
 					}

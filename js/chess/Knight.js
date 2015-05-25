@@ -1,6 +1,7 @@
 ﻿define([
-	"./Piece"
-],function(Piece){
+	"./Piece",
+	"./mv"
+],function(Piece, mv){
 	"use strict";
 	
 	//计算别马腿的数组
@@ -55,7 +56,7 @@
 			this.code = codeMap[this.player];
 		},
 		//判断是否别马腿
-		isValidMove:function(){
+		isValidDst:function(){
 			var board = this.board, cell = this.cell, pin;
 			if(this.isSide(board.boardMap[dst])){
 				return false;
@@ -64,7 +65,7 @@
 			return cell != pin && board.boardMap[pin] == 0;
 		},
 		//生成所有走法
-		generateMoves:function(){
+		genMoves:function(){
 			var board = this.board, cell = this.cell, mvs=[], pin=null, dst=null;
 			for(var i=0;i<4;i++){
 				pin = pins[i] + cell;
@@ -72,7 +73,7 @@
 					for(var j=0;j<2;j++){
 						dst = cell + delta[i][j];
 						if(board.inBoard(dst) && !me.isSide(board.boardMap[dst])){
-							mvs.push([cell,dst]);
+							mvs.push(mv.genMove(cell,dst));
 						}
 					}
 				}

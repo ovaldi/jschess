@@ -23,7 +23,7 @@
 			this.render();
 		},
 		
-		isValidMove:function(dst){
+		isValidDst:function(dst){
 			return false;
 		},
 		generateMoves:function(){
@@ -32,13 +32,15 @@
 		getValue:function(){
 			return 0;
 		},
+
+
 		//当前棋子是否与目标位置处在同一行
-		isSameRow:function(dst){
+		isSameRow: function(dst){
 			return this.board.isSameRow(this.cell, dst);
 		},
 		//当前棋子是否与目标位置处在同一列
-		isSameCol:function(dst){
-			return this.board.isSameCol(this.cell,dst);
+		isSameCol: function(dst){
+			return this.board.isSameCol(this.cell, dst);
 		},
 		//当前棋子是否未过河
 		isHomeHalf : function(){
