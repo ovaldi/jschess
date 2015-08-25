@@ -11,7 +11,7 @@ define(function(){
 			return mv % 256;
 		},
 		//反推目标位置
-		getDst: function(){
+		getDest: function(){
 			return parseInt(mv/256);
 		}
 	};

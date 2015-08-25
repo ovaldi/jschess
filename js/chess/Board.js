@@ -1,8 +1,8 @@
 define([
-	"jquery",
+	"lodash",
 	"./Pawn",
 	"./utils/EventManager"
-], function($, Pawn, EventMgr) {
+], function(_, Pawn, EventMgr) {
 	"use strict";
 
 	//判断棋子是否在棋盘内的数组
@@ -45,7 +45,7 @@ define([
 	];
 
 	function _initBoardMap(){
-		return [  
+		return [
 			0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 			0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 			0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -64,28 +64,28 @@ define([
 			0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 		];
 	};
-	
+
 	function Board(){
 		this.init.apply(this, arguments);
 	}
-	
+
 	var proto = Board.prototype;
-	
+
 	proto.init = function(cfg){
-		this.config = $.extend({}, cfg);
-		
+		this.config = _.extend({}, cfg);
+
 		this.selected = null;//当前选中棋子
 		this.lastPos = null;//上一步棋
 		this.moveHistory=[];//走法记录
 		this.listener = new EventMgr();//初始化事件
 		this.boardMap = _initBoardMap();//初始化棋盘数组
-		
+
 		//TODO:初始化所有棋子
-		
+
 		this.render();
 		return this;
 	};
-	  
+
 	//判断棋子是否在棋盘内
 	proto.inBoard = function(cell){
 		return inBoardMap[cell];
@@ -117,7 +117,7 @@ define([
 		//TODO
 		return this;
 	};
-	
+
 	//绘制棋盘
 	proto._drawBoard = function() {
 		//TODO
@@ -126,10 +126,10 @@ define([
 	proto._drawPieces = function(){
 		//TODO
 	};
-	
+
 	proto.destroy = function() {
-		
+
 	};
-	
+
 	return Board;
 });

@@ -1,10 +1,10 @@
 ﻿define([
-	"jquery",
-	"../utils/declare",
+	"lodash",
+	"declare",
 	"../utils/EventManager"
-],function ($, declare, EventMgr) {
+],function (_, declare, EventMgr) {
 	"use strict";
-	
+
 	//棋子基类
 	var Piece = declare(null, {
 		init:function(cfg){
@@ -22,7 +22,7 @@
 			this.code = 0;
 			this.render();
 		},
-		
+
 		isValidDst:function(dst){
 			return false;
 		},
@@ -63,11 +63,11 @@
 		//渲染棋子
 		render : function(){
 			var self=this;
-			
+
 			this.listener.fire("render");
-			
+
 			//TODO：绘制棋子
-			
+
 			self.listener.fire("rendered");
 		},
 		select : function(){
@@ -81,12 +81,12 @@
 		},
 		//销毁棋子
 		destroy : function(){
-			
+
 			delete this.board;
 		}
-	});	
-	
-	
+	});
+
+
 	Piece.KING = 0;
 	Piece.SCHOLAR = 1;
 	Piece.ELEPHANT = 2;

@@ -1,0 +1,27 @@
+{
+  "name": "declare",
+  "main": "declare.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Ovaldi/declare.js",
+  "authors": [
+    {
+      "name": "Raoh",
+      "email": "232280074@qq.com"
+    }
+  ],
+  "description": "Create a constructor using a compact notation for inheritance and prototype extension.",
+  "keywords": [
+    "javascript",
+    "inherited"
+  ],
+  "license": "MIT",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "d8159140a5a647bd320ea3dcfffb92010ab6afb1"
+  },
+  "_source": "git://github.com/Ovaldi/declare.js.git",
+  "_target": "*",
+  "_originalSource": "declare"
+}
