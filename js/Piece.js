@@ -1,8 +1,8 @@
 ﻿define([
 	"lodash",
 	"declare",
-	"../utils/EventManager"
-],function (_, declare, EventMgr) {
+	"eventbus"
+],function (_, declare, EventBus) {
 	"use strict";
 
 	//棋子基类
@@ -20,6 +20,9 @@
 			//16~22依次表示黑方的将、士、象、马、车、炮和卒；
 			//(code&8)!=0 表示红方棋子，(code&16)!=0 表示黑方棋子。
 			this.code = 0;
+
+			this.listener = new EventBus();
+
 			this.render();
 		},
 

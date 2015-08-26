@@ -3,17 +3,17 @@
 	"./mv"
 ],function(Piece, mv){
 	"use strict";
-	
+
 	var codeMap = {
-			0:13,
-			1:21
+			0: 13,
+			1: 21
 		},
 		//炮的走法偏移量
 		delta:[-1,1,-16,16]
-	
+
 	var Rook = Piece.extend({
 		init:function(cfg){
-			Piece.prototype.init.apply(this,arguments);
+			Piece.prototype.init.apply(this, arguments);
 			this.code = codeMap[this.player];
 		},
 		isValidMove:function(dst){//假定dst一定在棋盘内
@@ -54,7 +54,7 @@
 			return mvs;
 		}
 	});
-	
+
 	Rook.valuePos=[
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -73,6 +73,6 @@
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	];
-	
+
 	return Rook;
 });

@@ -12,7 +12,9 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "EventBus": "event-bus#~0.0.1",
     "declare": "*",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "requirejs": "~2.1.20"
   }
 }
