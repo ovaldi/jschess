@@ -65,7 +65,7 @@
 			for(var i=0;i<4;i++){
 				dst = cell + delta[i];
 				if(board.inBoard(dst)&&!this.isSide(board.boardMap[dst])){
-					mvs.push(mv.genMove(cell, dst));
+					mvs.push(mv.gen(cell, dst));
 				}
 			}
 			return mvs;

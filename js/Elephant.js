@@ -69,7 +69,7 @@
 				if(board.inBoard(pin)&&this.isHomeHalf()&&boardMap[pin]==0){
 					dst = cell + delta[i];
 					if(board.inBoard(dst) && !this.isSide(boardMap[dst])){
-						mvs.push(mv.genMove(cell, dst));
+						mvs.push(mv.gen(cell, dst));
 					}
 				}
 			}

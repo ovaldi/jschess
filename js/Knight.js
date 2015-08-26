@@ -3,7 +3,7 @@
 	"./mv"
 ],function(Piece, mv){
 	"use strict";
-	
+
 	//计算别马腿的数组
 	var knightPinMap = [0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -38,7 +38,7 @@
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	  0,  0,  0,  0,  0,  0,  0];
-	
+
 	var codeMap = {
 			0:11,
 			1:19
@@ -49,7 +49,7 @@
 		delta = [
 			[-33,-31],[-18,14],[-14,18],[31,33]
 		];
-		
+
 	var Knight = Piece.extend({
 		init:function(){
 			Piece.prototype.init.apply(this,arguments);
@@ -67,13 +67,13 @@
 		//生成所有走法
 		genMoves:function(){
 			var board = this.board, cell = this.cell, mvs=[], pin=null, dst=null;
-			for(var i=0;i<4;i++){
+			for(var i = 0; i < 4; i++){
 				pin = pins[i] + cell;
 				if(board.inBoard(pin) && board.boardMap[pin] == 0){
-					for(var j=0;j<2;j++){
+					for(var j = 0; j < 2; j++){
 						dst = cell + delta[i][j];
 						if(board.inBoard(dst) && !me.isSide(board.boardMap[dst])){
-							mvs.push(mv.genMove(cell,dst));
+							mvs.push(mv.gen(cell,dst));
 						}
 					}
 				}
@@ -84,7 +84,7 @@
 			return Knight.valuePos[this.cell];
 		}
 	});
-	
+
 	//马当前位置的价值评估
 	Knight.valuePos = [
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -104,6 +104,6 @@
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	];
-	
+
 	return Knight;
 });

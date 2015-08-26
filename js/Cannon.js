@@ -56,7 +56,7 @@
 					pcDst = board.boardMap[dst];
 					if(pcDst != 0){
 						if(oppSideCode & pcDst == 0){
-							mvs.push(mv.genMove(cell, dst));
+							mvs.push(mv.gen(cell, dst));
 						}
 						break;
 					}

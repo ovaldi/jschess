@@ -43,7 +43,7 @@
 				while(board.inBoard(dst)){
 					pcDst = board.boardMap[dst];
 					if(oppSideCode&pcDst == 0){
-						mvs.push(mv.genMove(cell, dst));
+						mvs.push(mv.gen(cell, dst));
 					}
 					if(pcDst != 0){
 						break;

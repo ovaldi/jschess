@@ -37,14 +37,14 @@
 	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	  0, 0, 0, 0, 0, 0, 0];
-	
+
 	var codeMap = {
 			0:9,
 			1:17
 		},
 		//士的走法偏移量
 		delta = [-17,15,-15,17];
-	
+
 	var Scholar = Piece.extend({
 		init:function(){
 			Piece.prototype.init.apply(this,arguments);
@@ -52,8 +52,8 @@
 			return this;
 		},
 		isValidMove:function(dst){
-			return !this.isSide(this.board.boardMap[dst]) && 
-				this.board.inFort(dst) && 
+			return !this.isSide(this.board.boardMap[dst]) &&
+				this.board.inFort(dst) &&
 				legalSpanMap[dst - this.cell + 256] == 2;
 		},
 		generateMoves:function(){
@@ -61,7 +61,7 @@
 			for(var i=0;i<4;i++){
 				dst = cell+ delta[i];
 				if(board.inFort(dst)&&!this.isSide(board.boardMap[dst])){
-					mvs.push(mv.genMove(cell, dst));
+					mvs.push(mv.gen(cell, dst));
 				}
 			}
 			return mvs;
@@ -70,8 +70,8 @@
 			return Scholar.valuePos[this.cell];
 		}
 	});
-	
-	
+
+
 	Scholar.valuePos=[
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -90,6 +90,6 @@
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	];
-	
+
 	return Scholar;
 });
