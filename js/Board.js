@@ -130,7 +130,8 @@ define([
 	};
 
 	proto.destroy = function() {
-
+		this.listener.destroy();
+		this.listener = null;
 	};
 
 	return Board;

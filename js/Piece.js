@@ -84,8 +84,9 @@
 		},
 		//销毁棋子
 		destroy : function(){
-
-			delete this.board;
+			this.listener.destroy();
+			this.listener = null;
+			this.board	  = null;
 		}
 	});
 
