@@ -1,2 +1,2 @@
-# jschess
-Chinese chess (developing) 
+## jschess
+Chinese chess (developing)
