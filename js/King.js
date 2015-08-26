@@ -47,10 +47,10 @@
 		knightCheckDelta = [-33, -18], [-31, -14], [14, 31], [18, 33],
 		//将的走法偏移量
 		delta:[-1,1,-16,16];
-	
+
 	var King = Piece.extend({
 		init:function(cfg){
-			Piece.prototype.init.apply(this,arguments);
+			Piece.prototype.init.apply(this, arguments);
 			this.code = codeMap[this.player];
 		},
 		isValidDst:function(dst){
@@ -73,9 +73,9 @@
 		//判断是否被将军
 		isChecked:function(){
 			var board = this.board, boardMap = board.boardMap, player = this.player,
-				sideCode = this.sideCode(), oppSideCode = this.oppSideCode(), 
+				sideCode = this.sideCode(), oppSideCode = this.oppSideCode(),
 				nDelta, pin, src, dst, code, i, j;
-				
+
 			for(src = 0; src < 256; src++){
 				//1.找到"将/帅"的位置
 				if(boardMap[src] != sideCode + piece.KING){
@@ -134,7 +134,7 @@
 			return King.valuePos[this.cell];
 		}
 	});
-	
+
 	King.valuePos = [
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -153,6 +153,6 @@
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	];
-	
+
 	return King;
 });
